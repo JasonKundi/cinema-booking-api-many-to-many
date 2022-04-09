@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
- // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Customer {
@@ -45,7 +45,7 @@ model Screen {
   screenings Screening[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
-  Seat       Seat[]
+  seats      Seat[]
 }
 
 model Screening {
@@ -76,5 +76,6 @@ model Seat {
   screens  Screen   @relation(fields: [screenId], references: [id])
   screenId Int
   number   Int
+  row      String
   tickets  Ticket[]
 }
